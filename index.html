@@ -136,7 +136,7 @@
                         <input type="email" id="email-input" class="form-input border-blue-300 focus:border-blue-500 focus:ring-blue-500" placeholder="e.g. name@company.com" required>
                         <p class="text-xs text-blue-700 mt-2 font-medium flex items-center gap-1">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            Checking out for the office? Use your company email to instantly unlock credits for your next purchase.
+                            Checking out for the office? Use your company email to instantly unlock credits and a permanent 5% store-wide discount for future purchases.
                         </p>
                     </div>
 
@@ -190,14 +190,20 @@
                     </div>
                 </div>
 
-                <div class="flex justify-between items-center font-bold text-lg pt-4 border-t border-gray-200 pb-4">
+                <div class="flex justify-between items-center font-bold text-lg pt-4 border-t border-gray-200 pb-2">
                     <span>Estimated Total</span>
                     <span id="summary-total">$12,138.00</span>
                 </div>
 
-                <div id="summary-b2b-discount" class="flex justify-between items-center bg-green-50 p-3 rounded border border-green-200 text-green-800 hidden font-semibold text-sm">
-                    <span>Next Order Credit Earned</span>
-                    <span id="summary-b2b-amount">+$0.00</span>
+                <div id="summary-b2b-discount" class="flex flex-col gap-2 bg-green-50 p-4 rounded border border-green-200 text-green-800 hidden mt-4">
+                    <div class="flex justify-between items-center font-semibold text-sm">
+                        <span>Next Order Credit Earned</span>
+                        <span id="summary-b2b-amount">+$0.00</span>
+                    </div>
+                    <div class="flex justify-between items-center text-xs font-medium border-t border-green-200 pt-2 mt-1">
+                        <span>Business Tier Unlocked</span>
+                        <span>5% Off All Future Orders</span>
+                    </div>
                 </div>
 
                 <div class="mt-8 text-center text-sm text-gray-500">
@@ -214,7 +220,7 @@
         <div class="relative bg-white w-full max-w-lg mx-4 rounded-xl shadow-2xl p-8 transform transition-all">
             <div class="mb-6">
                 <h2 id="modal-title" class="text-2xl font-bold text-blue-700 mb-2">Shopping for office?</h2>
-                <p class="text-sm text-gray-600">Kindly help us improve your shopping experience with our tailored B2B program. Based on your cart value and company email, you qualify to earn an exclusive credit toward future purchases.</p>
+                <p class="text-sm text-gray-600">Kindly help us improve your shopping experience with our tailored B2B program. Based on your cart value and company email, you qualify to earn an exclusive credit toward your next order, <strong>plus a permanent 5% store-wide discount on all future purchases.</strong></p>
             </div>
 
             <form id="b2b-modal-form" class="space-y-5">
@@ -266,7 +272,7 @@
                 <div class="mt-4">
                     <label class="flex items-start gap-3 cursor-pointer">
                         <input type="checkbox" id="b2b-account-create" checked disabled class="mt-1 w-4 h-4 text-gray-900 border-gray-300 rounded focus:ring-gray-900 opacity-70">
-                        <span class="text-sm font-medium text-gray-800">Automatically create my Steelcase Business Account to securely store my future credits.</span>
+                        <span class="text-sm font-medium text-gray-800">Automatically create my Steelcase Business Account to securely store my earned credits and activate my 5% store-wide discount.</span>
                     </label>
                 </div>
 
@@ -356,8 +362,6 @@
         });
 
         function applyB2BCredit() {
-            // Note: We do NOT subtract this from the current cart total.
-            // We only show it as an earned bonus for the future.
             summaryB2bAmount.innerText = '+' + formatMoney(CREDIT_AMOUNT);
             summaryB2bRow.classList.remove('hidden');
         }
@@ -390,7 +394,7 @@
                 alert("Please agree to the B2B terms before checking out.");
                 return;
             }
-            alert("Order processing initiated successfully! Your credit will be applied to your newly created account.");
+            alert("Order processing initiated successfully! Your credit and 5% discount tier will be applied to your newly created account.");
         });
     </script>
 </body>
